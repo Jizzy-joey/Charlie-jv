@@ -1,0 +1,24 @@
+{
+  "name": "charlie-jv",
+  "version": "1.0.0",
+  "description": "html,css,tailwind",
+  "main": "arrays.js",
+  "scripts": {
+    "fr": "npx @tailwindcss/cli -i ./input.css -o ./src/output.css --watch",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jizzy-joey/Charlie-jv.git"
+  },
+  "author": "joey",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Jizzy-joey/Charlie-jv/issues"
+  },
+  "homepage": "https://github.com/Jizzy-joey/Charlie-jv#readme",
+  "dependencies": {
+    "@tailwindcss/cli": "^4.1.10",
+    "tailwindcss": "^4.1.10"
+  }
+}

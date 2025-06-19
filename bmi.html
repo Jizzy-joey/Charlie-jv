@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMI Calculator</title>
+    <link rel="stylesheet" href="./src/output.css">
+</head>
+<body>
+    <main class="h-screen flex flex-col items-center justify-center gap-4 bg-slate-950 text-white">
+        <h1 class="text-5xl font-bold uppercase"><abbr title="body mass index">BMI </abbr>Calculator</h1>
+
+        <div class="flex justify-center items-center flex-col gap-4">
+            <section>
+            <ul>
+                <li><input type="number" name="weight" id="weight" placeholder="enter your weight in kg" required class="mb-2 w-[300px] outline-none border-4 border-slate-50 py-2 px-2 rounded-full min="1" max="500" step="0.1" "></li>
+                <li><input type="number" name="height" id="height" placeholder="enter your height" required class="mb-2 w-[300px] outline-none border-4 border-slate-50 py-2 px-2 rounded-full min="1" max="500" step="0.1" "></li>
+                <li><button id="calculate" class="bg-slate-50 text-slate-950 transition rounded-full hover:font-bold px-5 py-2 w-full cusor-pointer">Calculate BMI</button></li>
+                <li><span id="result"></span></li>
+            </ul>
+        </section>
+        <section>
+            <p id="result"></p>
+            <p id="category"></p>
+            <p id="recommended"></p>
+        </section>
+        </div>
+        
+           
+    </main>
+</body>
+<!-- <script>
+
+
+    const score1 = 140
+    const score2 = 50
+
+    if(core1 <=100 && score2 <=100){
+
+    if(score1 >= 50 && score2 >= 50)
+        alert("Exam, Passed!");
+    
+    else if(score1 >= 50 || score2 >= 50)
+        alert(`Exam, Passed with a reset condition. you are to reset 
+        ${score1 < score2 ? "score1" : "score2"} examination!`);
+    
+    else
+        alert("Exam, Failed 🥲!");
+     }
+
+    else{
+        alert("Invalid score, please enter a valid score between 0 and 100");
+    }
+</script> -->
+
+<script>
+    const input = document.querySelectorAll('input');
+    const btn = document.querySelector(`button`)
+    const outputs = document.querySelectorAll('p');
+
+    function handleBMIcalculation(){
+       const weight = input[0].value
+         const height = input[1].value / 100; // Convert height from cm to meters
+         const bmi = (weight / (height ** 2)).toFixed(2); 
+
+         outputs[0].innerHTML = `<strong>result:<strong> ${bmi}<span> kg/m²</span>`
+            outputs[1].innerHTML = `<strong>category:</strong> ${bmi < 18.5 ? 'Underweight' : 
+            bmi < 24.9 ? 'Normal weight' : bmi < 29.9 ? 'Overweight' : 'Obesity'}`;
+            outputs[2].innerHTML = `<strong>recommended:</strong> ${bmi < 18.5 ? 'Increase your calorie intake and consider strength training.' :
+            bmi < 24.9 ? 'Maintain your current lifestyle.' : bmi < 29.9 ? 'Consider a balanced diet and regular exercise.' : 'Consult a healthcare provider for personalized advice.'}`;
+            clearInputs();
+    }
+    btn.addEventListener('click', handleBMIcalculation);
+</script>
+</html>

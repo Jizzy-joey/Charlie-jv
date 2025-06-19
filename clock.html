@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital clock</title>
+    <link rel="stylesheet" href="./src/output.css">
+
+</head>
+<body>
+    <main class="h-screen flex justify-center items-center flex-col gap-4gb-slate-950 text-black">
+        <h1 class="text-5xl font-bold uppercase">Digital clock</h1>
+        <div class="text-6xl font-mono w-3/4 h-64 bg-blue-600 flex justify-center items-center px-4" id="clock">
+
+            <div class="card">
+            <span>03</span>
+                <span>hr</span>
+            </div>
+            <div class="card">
+                <span>46</span>
+                <span>mins</span>
+            </div>
+        <div class="card">
+            <span>55</span>
+            <span>sec</span>
+        </div>
+        <div class="card">
+            <span>55</span>
+            <span>millisecond</span>
+        </div >
+        <div class="self-center">
+            <span></span>
+            <span>pm/am</span>
+        </div>
+        
+    </div>
+    </main>
+    
+</body>
+<script>
+    function updateClock() {
+        const now = new Date();
+        let hours = now.getHours();
+        const ampm = hours >= 12 ? 'pm' : 'am';
+        hours = hours % 12;
+        hours = hours ? hours : 12; // the hour '0' should be '12'
+        const hoursStr = String(hours).padStart(2, '0');
+        const minutes = String(now.getMinutes()).padStart(2, '0');
+        const seconds = String(now.getSeconds()).padStart(2, '0');
+        const milliseconds = String(now.getMilliseconds()).padStart(3, '0');
+
+        const cards = document.querySelectorAll('#clock .card');
+        if (cards.length >= 4) {
+            cards[0].querySelector('span').textContent = hoursStr;
+            cards[1].querySelector('span').textContent = minutes;
+            cards[2].querySelector('span').textContent = seconds;
+            cards[3].querySelector('span').textContent = milliseconds;
+        }
+        const ampmSpan = document.querySelector('#clock > .self-center > span');
+        if (ampmSpan) {
+            ampmSpan.textContent = ampm;
+        }
+    }
+
+    setInterval(updateClock, 50);
+    updateClock();
+</script>
+</html>
